@@ -1,7 +1,7 @@
 // Selectors
-const todoInput = document.querySelector('.todo-input');
-const todoButton = document.querySelector('.todo-button');
-const todoList = document.querySelector('.todo-list');
+const todoInput = document.querySelector(".todo-input");
+const todoButton = document.querySelector(".todo-button");
+const todoList = document.querySelector(".todo-list");
 
 // Event Listeners
 todoButton.addEventListener("click", addTodo);
@@ -14,13 +14,14 @@ function addTodo(event){
     console.log("Hello");
     // Todo Div
     const todoDiv = document.createElement("div");
-    todoDiv.classList.add("todo");  // equal to : todoDiv.className="todo";
+    todoDiv.classList.add("todo");  // equal to : todoDiv.className='todo';
     // Create LI
     const newTodo = document.createElement("li");
     newTodo.innerText = todoInput.value;
     newTodo.classList.add("todo-item");
     // Append LI on Div
     todoDiv.appendChild(newTodo);
+
     // Complete button
     const completedButton = document.createElement("button");
     completedButton.innerHTML = '<i class="fas fa-check"></i>';
@@ -40,22 +41,22 @@ function addTodo(event){
 }
 
 function deleteCheck(event){
-    const item = event.target; // target is what we are clicking on 
+    const item = event.target; // target is what we are clicking on (trash button)
     // Delete Todo
-    if (item.classList[0] === 'trash-button'){
+    if (item.classList[0] === "trash-button"){
         const todo = item.parentElement;
         // Add fall animation
         todo.classList.add("fall");
         //todo.remove();
         // function executed after trasnsition end
-        todo.addEventListener("transitioned",function(){
+        todo.addEventListener("transitionend", function(){
             todo.remove();
         });
     }
     // Check Todo
     const todo = item.parentElement;
-    todo.classList.toggle("completed"); // The classList.toggle("", boolean) method supports adding and removing CSS classes 
-    
-
-
+    if (item.classList[0] === "complete-button"){
+        // The classList.toggle("", boolean) method supports adding and removing CSS classes 
+        todo.classList.toggle("completed"); 
+    }
 }
